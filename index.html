@@ -1,0 +1,216 @@
+<html>
+<head>
+    <title>Nandurbari Chilli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        .sticky-nav {
+            transition: background-color 0.3s;
+        }
+        .sticky-nav.scrolled {
+            background-color: #dc2626;
+        }
+
+        /* Style for the side menu */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: white;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 20px;
+        }
+
+        .menu ul li {
+            margin-bottom: 20px;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            display: block;
+            padding: 8px;
+        }
+
+        .menu ul li a:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Overlay background */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+        }
+
+        /* Show the menu when active */
+        .menu.active {
+            left: 0;
+        }
+
+        /* Show the overlay when active */
+        .overlay.active {
+            display: block;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.sticky-nav');
+            const menuButton = document.querySelector('.menu-button');
+            const menu = document.querySelector('.menu');
+            const overlay = document.querySelector('.overlay');
+            
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Toggle menu visibility
+            menuButton.addEventListener('click', function () {
+                menu.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+
+            // Close menu when clicking on overlay
+            overlay.addEventListener('click', function () {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
+</head>
+<body class="bg-white">
+    <!-- Top Bar -->
+    <div class="bg-red-600 text-white text-center py-2 text-sm">
+        FLAT 30% OFF ON ALL PRODUCTS USE CODE- NCHILLI30
+    </div>
+    <!-- Header -->
+    <header class="sticky-nav flex items-center justify-between p-4 fixed w-full top-0 z-10 bg-white">
+        <div class="flex items-center space-x-4">
+            <button class="menu-button text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+            <img src="https://storage.googleapis.com/a1aa/image/4dbJan95XwoNA-6qTYDg2NFeGjmwVfKXfNfmXdAHxYU.jpg" alt="Nandurbari Chilli Logo" class="ml-4 rounded-full" width="50" height="50"/>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="checkout.html">
+                <i class="fas fa-shopping-bag text-xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Side Menu -->
+    <div class="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Shop</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Categories -->
+    <div class="flex justify-around py-4 bg-gray-100 mt-16">
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/D3R5HL8hDi1Sug6rntWxkJOQKNj3JstcGHrw0qSaItU.jpg" alt="20gm Chilli Powder" class="rounded-full mx-auto" width="50" height="50"/>
+            <p class="mt-2">20gm</p>
+            <button class="bg-red-500 text-white px-4 py-1 rounded-full mt-2">Add to Cart</button>
+        </div>
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/vbuhy5f_2_Fv441aeD0drPiliFhhVvn0H70krIv__fw.jpg" alt="500gm Chilli Powder" class="rounded-full mx-auto" width="50" height="50"/>
+            <p class="mt-2">500gm</p>
+            <button class="bg-red-500 text-white px-4 py-1 rounded-full mt-2">Add to Cart</button>
+        </div>
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/2-9hp5N_W7uK1kTwh9t_xqfTrxP0DRcCvWAUGnK7imI.jpg" alt="1kg Chilli Powder" class="rounded-full mx-auto" width="50" height="50"/>
+            <p class="mt-2">1kg</p>
+            <button class="bg-red-500 text-white px-4 py-1 rounded-full mt-2">Add to Cart</button>
+        </div>
+    </div>
+    <!-- Main Banner -->
+    <div class="relative bg-red-500 text-white text-center py-16">
+        <img src="https://storage.googleapis.com/a1aa/image/nuClICbbaanlVFNCNWZV1sOHykiwz_qvEtm80UbjSCw.jpg" alt="Chilli Powder Pack 1" class="absolute top-0 left-0 w-32 h-32" width="200" height="200"/>
+        <img src="https://storage.googleapis.com/a1aa/image/Z2kaCp51_2ii5oR-RdXxG3XCUghdajruiP0ou-v_ZFQ.jpg" alt="Chilli Powder Pack 2" class="absolute top-0 right-0 w-32 h-32" width="200" height="200"/>
+        <h1 class="text-4xl font-bold">PURE CHILLI POWDER</h1>
+        <img src="https://storage.googleapis.com/a1aa/image/4dbJan95XwoNA-6qTYDg2NFeGjmwVfKXfNfmXdAHxYU.jpg" alt="Nandurbari Chilli Logo" class="mx-auto my-4 rounded-full" width="100" height="100"/>
+        <button class="bg-white text-red-500 px-6 py-2 rounded-full font-bold">SHOP NOW</button>
+        <img src="https://storage.googleapis.com/a1aa/image/Zx7MAHRPvZQUM4eNasbBmji0qAp15qkbv-T8afGE1hk.jpg" alt="Chilli Powder Pack 3" class="absolute bottom-0 left-0 w-32 h-32" width="200" height="200"/>
+        <img src="https://storage.googleapis.com/a1aa/image/VJuc5ctK8XIg0Ew2DsgvfaUitGUd82u5bt3TnWG_oy4.jpg" alt="Chilli Powder Pack 4" class="absolute bottom-0 right-0 w-32 h-32" width="200" height="200"/>
+        <img src="https://storage.googleapis.com/a1aa/image/lXA0x4GBz1QDvN-3JlduMQt9KGoZBRn_igLZO6NrmmQ.jpg" alt="Woman Cooking with Chilli Powder" class="mx-auto mt-8" width="200" height="200"/>
+    </div>
+    <!-- Features -->
+    <div class="flex justify-around py-8 bg-white">
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/PFl1eZU5d3czMqZbQqIK-rM80m07vPC-E9Xxepm9QvI.jpg" alt="100% Pure Genuine Products" class="mx-auto" width="50" height="50"/>
+            <p class="mt-2 font-bold">100% Pure Genuine Products</p>
+            <p class="text-sm">0% Adulteration</p>
+        </div>
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/Y0J7aE0bVot49Nwa4sJGqjLWSkP94esDGedsX4q8Jys.jpg" alt="100% Genuine Products" class="mx-auto" width="50" height="50"/>
+            <p class="mt-2 font-bold">100% Genuine Products</p>
+            <p class="text-sm">Guaranteed quality</p>
+        </div>
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/4x-RJ3wGfiYlkb9fWAZOPtPCWb6cPSsl6GPut7opXnQ.jpg" alt="Freshly Ground" class="mx-auto" width="50" height="50"/>
+            <p class="mt-2 font-bold">Freshly Ground</p>
+            <p class="text-sm">From farm to table</p>
+        </div>
+        <div class="text-center">
+            <img src="https://storage.googleapis.com/a1aa/image/13xu9yWkOJ0ak29KSEFshSWZse-za7L2ZZsmDXEzY3Q.jpg" alt="Rich in Flavor" class="mx-auto" width="50" height="50"/>
+            <p class="mt-2 font-bold">Rich in Flavor</p>
+            <p class="text-sm">Enhance your dishes</p>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-lg font-bold mb-2">Nandurbari Chilli</h2>
+                    <p>The best quality chilli powder straight from the farms.</p>
+                </div>
+                <div class="w-full md:w-1/3 mb-6 md:mb-0">
+                    <h2 class="text-lg font-bold mb-2">Quick Links</h2>
+                    <ul>
+                        <li class="mb-2"><a href="#" class="hover:underline">Home</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">Shop</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">About Us</a></li>
+                        <li class="mb-2"><a href="#" class="hover:underline">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <h2 class="text-lg font-bold mb-2">Contact Us</h2>
+                    <p>Email: <a href="mailto:info@nandurbarichilli.com" class="hover:underline">info@nandurbarichilli.com</a></p>
+                    <p>Phone: <a href="tel:+00000000" class="hover:underline">+0000000000</a></p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="hover:text-gray-400"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-gray-400"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-gray-400"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
