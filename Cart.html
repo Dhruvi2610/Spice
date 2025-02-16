@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> 
+
+    <style>
+        body { background-color: #1a1a1a; color: white; }
+        .cart-container { background: white; color: black; }
+        .btn-maroon { background: #800000; color: white; }
+        .btn-maroon:hover { background: #990000; }
+    </style>
+</head>
+<body class="p-8">
+
+    <!-- Cart Section -->
+    <div class="container mx-auto max-w-lg cart-container p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-bold text-center mb-6">Shopping Cart</h2>
+        <div id="cart-items"></div>
+
+        <!-- Checkout Button (Hidden if Cart is Empty) -->
+        <button id="checkout-btn" onclick="proceedToPay()" 
+            class="w-full btn-maroon px-4 py-2 rounded-md mt-4 hidden">
+            Proceed to Pay
+        </button>
+    </div>
+
+    <!-- Address Section (Initially Hidden) -->
+    <div id="address-section" class="container mx-auto max-w-lg cart-container p-6 rounded-lg shadow-lg mt-8 hidden">
+        <h2 class="text-2xl font-bold text-center mb-4">Enter Your Address</h2>
+        <form>
+            <label class="block mb-2">Full Name</label>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-md mb-4" placeholder="Your Name" required>
+
+            <label class="block mb-2">Phone Number</label>
+            <input type="tel" class="w-full p-2 border border-gray-300 rounded-md mb-4" placeholder="Your Phone" required>
+
+            <label class="block mb-2">Address</label>
+            <textarea class="w-full p-2 border border-gray-300 rounded-md mb-4" rows="3" placeholder="Your Address" required></textarea>
+
+            <label class="block mb-2">City</label>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-md mb-4" placeholder="Your City" required>
+
+            <label class="block mb-2">Pincode</label>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-md mb-4" placeholder="Pincode" required>
+
+            <button type="button" onclick="checkout()" 
+                class="w-full btn-maroon px-4 py-2 rounded-md">
+                Confirm & Pay
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartItemsContainer = document.getElementById("cart-items");
+            let checkoutBtn = document.getElementById("checkout-btn");
+
+            // Clear existing items
+            cartItemsContainer.innerHTML = "";
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p class='text-center text-gray-700 text-xl'>🛒 Your cart is empty.</p>";
+                checkoutBtn.classList.add("hidden");  // Hide checkout button
+                return;
+            }
+
+            checkoutBtn.classList.remove("hidden"); // Show checkout button if cart has items
+
+            cart.forEach((item, index) => {
+                let itemElement = document.createElement("div");
+                itemElement.classList.add("flex", "items-center", "justify-between", "p-4", "border-b");
+
+                itemElement.innerHTML = `
+                    <div class="flex items-center">
+                        <img src="${item.image}" class="w-16 h-16 object-cover rounded-lg">
+                        <div class="ml-4">
+                            <span class="text-lg font-semibold">${item.name}</span>
+                            <div class="flex items-center mt-2">
+                                <button onclick="decreaseQuantity(${index})" class="bg-black text-white px-3 py-1 rounded-md mx-2">-</button>
+                                <span id="qty-${index}" class="text-lg">${item.quantity || 1}</span>
+                                <button onclick="increaseQuantity(${index})" class="bg-black text-white px-3 py-1 rounded-md mx-2">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="removeFromCart(${index})" 
+                        class="text-red-500 text-xl hover:text-red-700">
+                        <i class="fa-solid fa-trash"></i> <!-- Correct Font Awesome Icon -->
+                    </button>
+                `;
+
+                cartItemsContainer.appendChild(itemElement);
+            });
+        }
+
+        function increaseQuantity(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart[index].quantity = (cart[index].quantity || 1) + 1;
+            localStorage.setItem("cart", JSON.stringify(cart));
+            document.getElementById(`qty-${index}`).innerText = cart[index].quantity;
+        }
+
+        function decreaseQuantity(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                localStorage.setItem("cart", JSON.stringify(cart));
+                document.getElementById(`qty-${index}`).innerText = cart[index].quantity;
+            }
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function proceedToPay() {
+            document.getElementById("address-section").classList.remove("hidden");
+            document.getElementById("address-section").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function checkout() {
+            alert("Order placed successfully!");
+            localStorage.removeItem("cart");
+            window.location.href = "index.html"; // Redirect to home
+        }
+
+        // Load cart on page load
+        loadCart();
+    </script>
+
+</body>
+</html>
